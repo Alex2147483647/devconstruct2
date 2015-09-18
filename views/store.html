@@ -1,0 +1,213 @@
+<style>
+    .f-freelancer-name label {
+        padding: 1px 6px 2px 6px;
+    }
+
+    .inc-drop label {
+        width: 100%
+    }
+
+    .o-freelancer-info {
+        width: calc(100% - 45px);
+        float: right;
+        font-size: 13px;
+        color: #757575;
+        position: relative;
+        bottom: 8px;
+    }
+
+    .o-good {
+        color: #09A209;
+    }
+
+    .o-bad {
+        color: #FF0000;
+    }
+
+    .pro {
+        background-color: #f36a5a;
+    }
+
+    .bottom-container a i {
+        font-size: 16px;
+    }
+
+    .bottom-container {
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 0px 0px 6px 6px;
+        border-top: 0;
+
+        overflow: hidden;
+    }
+
+    .bottom-container a {
+        width: 33.33%;
+        float: left;
+        text-align: center;
+        border-right: 1px solid #E5E5E5;
+        padding: 2px 0px;
+    }
+
+    .bottom-container a:nth-child(3) {
+        border-right: 0;
+    }
+</style>
+
+<ui-view>
+<div class="row" >
+    <div class="col-md-12">
+        <!-- BEGIN todo SIDEBAR -->
+        <div class="todo-ui margin-top-10">
+
+            <div class="todo-sidebar ">
+
+                <a href="/#/store/add-edit">
+                    <button class="btn blue btn-block" style="margin-bottom: 10px;">
+                        <i class="fa fa-plus "></i> Добавить продукт
+                    </button>
+                </a>
+
+                <div class="portlet light">
+
+                    <div class="portlet-title">
+                        <div class="caption" a>
+                            <span class="caption-subject font-green-sharp">Категории</span>
+
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn" href="#">
+                                    <i class="fa fa-angle-down" style="width:11px"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body todo-project-list-content">
+                        <div class="todo-project-list">
+                            <div class="cat-output form-create-category" ng-hide="true">
+                                <div class="form-group">
+                                    <input class="form-control" id="input-category-name" name="category_name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <a ng-click="addCategory(-1)" class="btn btn-success"> Создать </a>
+                                </div>
+                            </div>
+                            <ul ng-model="categories_developer" class="nav nav-pills nav-stacked">
+                                <li ng-repeat="category in categories_developer">
+                                    <input ng-change="filterProducts.filter()" ng-model="filterProducts.filterParams.category[category.id]" class="devchecker" type="checkbox" name="category[]" id="category_id_{{category.id}}" value="{{category.id}}">
+                                    <label for="category_id_{{category.id}}" class="parent-label"></label>
+                                    <span class="check-parent">{{ category.name[0]}}</span><i class="fa fa-angle-down"></i>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END todo SIDEBAR -->            <!-- BEGIN todo CONTENT -->
+
+            <!-- ++++++++++++++++++++++ TODO START -->
+            <div class="todo-content">
+                <div class="portlet light">
+                    <!-- PROJECT HEAD -->
+
+                    <!-- end PROJECT HEAD -->
+
+                    <div class="input-icon">
+                        <i class="fa fa-search"></i>
+                        <input class="form-control" ng-model="filterProducts.filterParams.title" ng-change="filterProducts.filter()" placeholder="Найти в магазине" type="text">
+                    </div>
+
+                    <br/>
+
+
+                    <b>
+                        <p>
+                            Найдено {{products.length}} товаров</p>
+                    </b>
+
+
+                    <ul class="store_output nopadding " ng-model="products">
+                        <li ng-repeat="product in products.slice().reverse()" class="row">
+                            <div class="col-sm-2" style="text-align: center;">
+
+                                <img style="width:100%;border-radius: 6px 6px 0px 0px;" src="/images/avatar-empty.png"/>
+
+                                <div class="bottom-container no-margin" style="">
+                                    <a class="" href="">
+                                        <i class="fa fa-heart" style="color: #B9C0C5;font-size: 14px;"></i>
+                                    </a>
+
+
+                                    <a class="" href="">
+                                        <i class="fa fa-eye" style="color: #B9C0C5;"></i>
+                                    </a>
+
+
+                                        <ngcart-addp
+                                                class="" id="{{product.id}}"
+                                                name="{{product.title[0]}}"
+                                                price="{{product.price}}{{product.cur.name[0]}}" quantity="1"
+                                                data="2" developer="{{product.usr.username}}"
+                                                cat="{{product.cat.name[0]}}" link="{{product.seo_url}}"
+                                                catlink="{{product.cat.seo_url}}">
+                                        </ngcart-addp>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-sm-4">
+
+                                <a ng-href="#/store/{{product.cat.seo_url}}/{{product.seo_url}}" data-id="{{product.id}}">
+                                    <h4 style="color: #444D58;margin-top: 3px;" class="bold">{{product.title[0]}}</h4>
+                                </a>
+
+                                <span>Продавец: </span><a href="">{{product.usr.username}}</a>
+
+
+                            </div>
+                            <div class="col-sm-4">
+
+
+                                <p>
+                                    <span>Категория: </span><a href="#/store/{{product.cat.seo_url}}">{{product.cat.name[0]}}</a>
+                                </p>
+							<span style="color: #807E7E;font-size: 13px;">
+								{{product.attributes_compatibility[0]}}; {{product.attributes_browser[0]}}; {{product.attributes_tpl_type}}
+							</span>
+
+
+                            </div>
+                            <div class="col-sm-2" style="text-align: center">
+
+                                <p style="font-size: 26px;font-weight: 600;">{{product.price}}{{product.cur.name[0]}}</p>
+                                <i class="fa fa-spinner fa-spin"></i>
+                                <br/><br/>
+
+                                <p>Продаж: {{product.sales}}</p>
+
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <hr/>
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+            <!-- ++++++++++++++++++++++ TODO END -->
+
+
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div><!-- END PAGE CONTENT-->
+
+</ui-view>

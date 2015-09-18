@@ -1,0 +1,16 @@
+<div class="container">
+    <!-- BEGIN PAGE TITLE -->
+    <div class="page-title">
+        <h1>
+            <span data-ng-bind="$state.current.data.pageTitle"></span>
+            <small data-ng-bind="$state.current.data.pageSubTitle"></small>
+        </h1>
+    </div>
+    <!-- END PAGE TITLE --><!-- BEGIN PAGE TOOLBAR --><!--div class="page-toolbar">--><!-- BEGIN PAGE PANEL -->
+    <div class="btn-group pull-right" style="margin-top: 14px;" ng-show="$state.current.name === 'todo';">
+        <button class="btn btn-primary active" aria-pressed="true" data-content-type="orders" type="button">Заказы
+        </button>
+        <button class="btn btn-primary" data-content-type="freelancers" type="button">Исполнители</button>
+    </div>
+    <!-- BEGIN PAGE PANEL --><!--</div>--><!-- END PAGE TOOLBAR -->
+</div>

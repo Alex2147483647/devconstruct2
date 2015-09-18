@@ -1,0 +1,361 @@
+<style>
+	.fileinput-button input {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		margin: 0px;
+		opacity: 0;
+		font-size: 200px;
+		direction: ltr;
+		cursor: pointer;
+	}
+</style>
+<ul class="page-breadcrumb breadcrumb">
+	<li>
+		<a href="#">Home</a><i class="fa fa-circle"></i>
+	</li>
+	<li>
+		<a href="/#/freelance.html">Услуги</a>
+		<i class="fa fa-circle"></i>
+	</li>
+	<li class="active">
+		Заказ
+	</li>
+</ul>
+<div class="portlet light" >
+	<div class="portlet-body">
+		<div class="row">
+			<div class="col-md-12 blog-page">
+				<div class="row">
+					<div class="container">
+						<form class="form-horizontal" id="j-order-form">
+
+
+							<!-- Title -->
+							<div class="form-group">
+								<label for="title" class="col-sm-3 control-label o-control-label">Выберите категорию
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6" ng-model="categories_developer">
+									<select name="" id="cat-id" class="form-control">
+										<option value="0" selected="selected">Выберите категорию</option>
+										<option ng-repeat="category in categories_developer" value="{{category.id}}">{{ category.name[0]}}
+										</option>
+									</select>
+								</div>
+
+							</div>
+
+							<div class="form-group ">
+								<label  class="col-sm-3 control-label o-control-label">Название продукта
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+									<input id="prod-title" type="text" class="form-control"/>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label  class="col-sm-3 control-label o-control-label">Ценник
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-2">
+									<input id="prod-price" type="text" class="form-control"/>
+
+								</div>
+
+								<div class="col-sm-2" ng-model="currency">
+									<select name="" id="prod-cur" class="form-control">
+									<option value="0" selected="selected">Валюта</option>
+									<option ng-repeat="currency in currency" value="{{currency.id}}">{{currency.name[0]}}
+									</option>
+								</select>
+
+								</div>
+
+							</div>
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Описание
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+                                    <textarea rows="5" name="descr" class="form-control" id="prod-desc" placeholder="Подробно опишите задачу, сроки выполнения, другие условия работы"></textarea>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label"> </label>
+
+								<div class="col-sm-6">
+
+									<h3>Файлы</h3>
+									<hr style="margin: 10px 0px;"/>
+
+								</div>
+
+							</div>
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Миниатюра
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+                                    <span class="btn green fileinput-button">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Выберите файл</span>
+                                        <input name="files[]" multiple="" type="file">
+                                    </span>
+
+									<span style="margin-left: 10px;">JPEG или PNG 80x80px</span>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Превью
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+                                    <span class="btn green fileinput-button">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Выберите файл</span>
+                                        <input name="files[]" multiple="" type="file">
+                                    </span>
+
+									<span style="margin-left: 10px;">ZIP-архив с изображениями</span>
+
+								</div>
+
+							</div>
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Файлы
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+                                    <span class="btn green fileinput-button">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Выберите файл</span>
+                                        <input name="files[]" multiple="" type="file">
+                                    </span>
+
+									<span style="margin-left: 10px;">ZIP-архив файлами для покупателя (без превью)</span>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label"> </label>
+
+								<div class="col-sm-6">
+
+									<div id="" class="alert alert-success fade in">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+										Максимальный размер файла - 1GB. Пожалуйста, перед загрузкой убедитесь, что архив сжат.
+									</div>
+
+
+								</div>
+
+							</div>
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label"> </label>
+
+								<div class="col-sm-6">
+
+									<h3>Атрибуты</h3>
+									<hr style="margin: 10px 0px;"/>
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Совместимость с браузерами
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+									<select class="form-control" aria-invalid="false" id="browser" multiple="multiple" name="">
+										<option value="IE6">IE6</option>
+										<option value="IE7">IE7</option>
+										<option value="IE8">IE8</option>
+										<option value="IE9">IE9</option>
+										<option value="IE10">IE10</option>
+										<option value="IE11">IE11</option>
+										<option value="Firefox">Firefox</option>
+										<option value="Safari">Safari</option>
+										<option value="Opera">Opera</option>
+										<option value="Chrome">Chrome</option>
+										<option value="Edge">Edge</option>
+									</select>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Совместимо с:
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+									<select class="form-control" id="with" multiple="multiple" name="">
+										<option value="Facebook">Facebook</option>
+										<option value="Ecwid">Ecwid</option>
+										<option value="AngularJS">AngularJS</option>
+										<option value="Bootstrap 3.x">Bootstrap 3.x</option>
+										<option value="Bootstrap 2.3.x">Bootstrap 2.3.x</option>
+										<option value="Bootstrap 2.2.2">Bootstrap 2.2.2</option>
+										<option value="Bootstrap 2.2.1">Bootstrap 2.2.1</option>
+										<option value="Bootstrap 2.1.1">Bootstrap 2.1.1</option>
+										<option value="Bootstrap 2.1.0">Bootstrap 2.1.0</option>
+										<option value="Bootstrap 2.0.4">Bootstrap 2.0.4</option>
+										<option value="Bootstrap 2.0.3">Bootstrap 2.0.3</option>
+										<option value="Bootstrap 2.0.2">Bootstrap 2.0.2</option>
+										<option value="Bootstrap 2.0.1">Bootstrap 2.0.1</option>
+										<option value="Bootstrap 2.0">Bootstrap 2.0</option>
+										<option value="Foundation 5">Foundation 5</option>
+										<option value="Foundation 4">Foundation 4</option>
+									</select>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Колонки
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+									<select class="form-control" aria-invalid="false" id="columns" name="">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4+">4+</option>
+										<option value="N/A">N/A</option>
+									</select>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Шаблон
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+									<select class="form-control" aria-invalid="false" id="template-style" name="">
+										<option value="Fixed">Фиксированый</option>
+
+										<option value="Responsive">Адаптивный</option>
+
+									</select>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Демо
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+									<input id="demo-link" placeholder="Прямая ссылка на ДЕМО страницу на вашем сервере" class="form-control" type="text">
+
+
+								</div>
+
+							</div>
+							<br/>
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Теги
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+
+
+									<input type="text" id="tags" placeholder="html, css, wordpress, theme ..." class=" product-tags form-control "/>
+
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label">Сообщение для модератора
+									<i class="text-danger">*</i></label>
+
+								<div class="col-sm-6">
+                                    <textarea rows="5" name="descr" class="form-control" id="moder-msg" placeholder=""></textarea>
+
+								</div>
+
+							</div>
+
+
+							<div class="form-group ">
+								<label for="title" class="col-sm-3 control-label o-control-label"> </label>
+
+								<div class="col-sm-6">
+									<div class="checkbox">
+										<input type="checkbox" id="augment" name="agreement" class="devchecker" autocomplete="off">
+										<label for="augment">
+										</label>
+											<i class="text-danger">*</i></label> Любые изображения, звуки, видео, код, Flash, или другие элементы, которые не являются моей интелектуальной собственностью, были надлежащим образом лицензированы для использования. Помимо этого я имею полное право продать их на Devconstruct.
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<!-- /.form-group-->
+
+
+							<div class="form-group">
+								<div class="col-sm-3 o-control-label"></div>
+								<div class="col-sm-9 c-formSubmit">
+									<button type="button" ng-click="add_product()" class="btn btn-primary">
+										Загрузить
+										<i class="fa fa-cloud-upload"></i>
+									</button>
+
+								</div>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

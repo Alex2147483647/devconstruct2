@@ -1,0 +1,470 @@
+<style>
+    [id^="category-"] {
+        display: none;
+    }
+
+    [id^="category-"] + label {
+        cursor: pointer;
+        padding: 5px;
+        display: block;
+    }
+
+    [id^="category-"] + label:hover {
+        color: #000;
+        background: #ECECEC none repeat scroll 0% 0%;
+    }
+
+    [id^="category-"]:checked + label {
+        color: white;
+        background: rgb(68, 77, 88);
+    }
+
+    button.form-control {
+        width: auto;
+    }
+
+
+</style>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a><i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="/#/freelance.html">Услуги</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active">
+        Заказ
+    </li>
+</ul>
+<div class="portlet light" >
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12 blog-page">
+                <div class="row">
+                    <div class="container">
+                        <form class="form-horizontal" id="j-order-form">
+                            <input type="radio" name="type" value="1" checked="checked" style="display: none;">
+
+                            <!-- Title -->
+                            <div class="form-group j-required">
+                                <label for="title" class="col-sm-3 control-label o-control-label">Заголовок
+                                    <i class="text-danger">*</i></label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" name="title" value="" class="form-control" id="title" required placeholder="Что требуется сделать" autocomplete="off" maxlength="80">
+                                </div>
+
+
+                                <input id="ready_url" type="hidden"/>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group j-required">
+                                <label for="description" class="col-sm-3 control-label o-control-label">Описание
+                                    <i class="text-danger">*</i></label>
+
+                                <div class="col-sm-8">
+                                    <textarea rows="5" name="descr" class="form-control" id="description" required placeholder="Подробно опишите задачу, сроки выполнения, другие условия работы"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label o-control-label">Специализация</label>
+
+
+                                <div class="dropdown col-sm-9">
+                                    <button class="check-cat btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+                                        Выберите
+                                        <span class="caret"></span>
+                                    </button>
+
+                                    <ul ng-model="categories" class="dropdown-menu">
+                                        <li ng-repeat="category in categories">
+                                            <input id="category-{{$index}}" type="radio" name="category" value="{{category.id}}">
+                                            <label style="margin-bottom: 0" for="category-{{$index}}" class="parent-label" onclick="$(this).closest('ul').prev('button').html($(this).text() + '<span class=\'caret\'></span>')">
+                                                <span class="check-parent">{{ category.name[0]}}</span><i class="fa fa-angle-down"></i>
+                                            </label>
+
+
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label o-control-label">Тип услуги</label>
+
+                                <div class="col-sm-9">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label for="service_type-0" class="btn btn-default active">
+                                            <i class="fa fa-briefcase"></i>
+                                            <input id="service_type-0" type="radio" name="service_type" value="0"
+                                                   checked="checked"> Разовый заказ
+                                        </label>
+                                        <label for="service_type-1" class="btn btn-default">
+                                            <i class="fa fa-anchor"></i>
+                                            <input id="service_type-1" type="radio" name="service_type" value="1">
+                                            Постоянная работа
+                                        </label>
+                                        <label for="service_type-2" class="btn btn-default">
+                                            <i class="fa fa-gavel"></i>
+                                            <input id="service_type-2" type="radio" name="service_type" value="2">
+                                            Конкурс
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="j-order-form-dp"></div>
+
+                            <div class="j-type j-type-1">
+                                <div class="form-group " id="j-tags">
+                                    <label for="j-tag-select" class="col-sm-3 control-label o-control-label">Необходимые навыки</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="hidden" id="j-tag-value">
+                                        <input type="hidden" name="tags_current" value="">
+                                        <input type="text" class="form-control" id="j-tag-select" placeholder="Начните вводить название навыка" autocomplete="off">
+                                        <ul class="autocomplete" style="width: 488px;"></ul>
+                                        <div class="o-tagSkills j-selected-tags"></div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript"></script>
+                            </div>
+
+                            <!-- Budget -->
+
+
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label o-control-label">Цена</label>
+
+
+                                <div class="col-sm-2 j-region displaynone">
+
+                                    <input type="text" class="form-control" id="j-order-price" value="" placeholder="Введите">
+                                </div>
+
+                                <div class="col-sm-2 mrgb5" >
+                                    <select class="form-control" id="j-order-currency" >
+
+                                        <option value="2">
+                                            грн
+                                        </option>
+                                        <option value="3">
+                                            руб
+                                        </option>
+                                        <option value="1">
+                                            $
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label  class="col-sm-3 control-label o-control-label">Регион</label>
+
+                                <div class="col-sm-4 mrgb5">
+                                    <select class="form-control" id="j-order-country">
+                                        <option selected="selected" value="0">
+                                            Выбрать
+                                        </option>
+                                        <option value="1">
+                                            Украина
+                                        </option>
+                                        <option value="1000">
+                                            Россия
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 j-region displaynone">
+
+                                    <input type="text" class="form-control" id="j-order-city" value="" placeholder="Город" autocomplete="off">
+
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group j-region j-city displaynone hidden">
+                                <label  class="col-sm-3 control-label o-control-label">Адрес объекта</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="addr_addr" id="j-order-addr-addr" value="" placeholder="Укажите улицу, район, номер дома и т.п.">
+                                </div>
+                            </div>
+
+                            <!-- Map -->
+                            <div class="form-group j-region j-city displaynone hidden">
+                                <input type="hidden" name="addr_lat" id="j-order-addr-lat" value="0">
+                                <input type="hidden" name="addr_lng" id="j-order-addr-lng" value="0">
+
+                                <div class="col-sm-3 o-control-label"></div>
+                                <div class="col-sm-8">
+                                    <div id="j-order-addr-map" style="width:100%; height:300px; display: none;" class="p-addProject_map map-google"></div>
+                                </div>
+                            </div>
+
+                            <!-- Gallery -->
+                            <div style="display: none" class="form-group j-images" ng-hide="true">
+                                <input type="hidden" name="images_type" value="ajax" class="j-images-type-value">
+                                <input type="hidden" name="images_hash" value="">
+                                <label class="col-sm-3 control-label o-control-label">Изображения</label>
+
+                                <div class="col-sm-9">
+
+                                    <div id="p-gallery-show" class="j-images-type j-images-type-ajax">
+
+                                        <ul class="p-addWork-gallery j-img-slots ui-sortable">
+
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+                                            <li class="j-img-slot">
+                                                <a class="p-hasimg hidden j-img-preview">
+                                                    <div class="p-galleryImg-container">
+                                                        <img class="j-img-img" src="" alt="">
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-galleryImg-remove link-delete hidden j-img-delete j-img-preview"><i class="fa fa-times-circle-o"></i></a>
+                                                <a class="j-img-upload">
+                                                    <div class="p-galleryImg-container">
+                                                        <i class="fa fa-plus-circle j-img-link" style="position: relative; overflow: hidden; direction: ltr;"><input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></i>
+                                                    </div>
+                                                </a>
+                                                <input type="hidden" name="" value="" class="j-img-fn">
+                                            </li>
+
+                                            <div class="clearfix"></div>
+                                        </ul>
+
+                                        <div class="help-block">
+                                            Вы можете сортировать изображения просто перетаскивая их
+                                        </div>
+
+                                        Если у вас возникли проблемы воспользуйтесь
+                                        <a href="#" class="ajax-link j-images-toggler" data-type="simple"><span>альтернативной формой</span></a>
+                                    </div>
+
+                                    <div id="p-gallery" class="p-gallery-alternate hide j-images-type j-images-type-simple">
+                                        <div>
+                                            <input name="images_simple_1" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_2" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_3" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_4" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_5" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_6" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_7" type="file">
+                                        </div>
+                                        <div>
+                                            <input name="images_simple_8" type="file">
+                                        </div>
+
+                                        <a href="#" class="ajax-link c-formCancel j-images-toggler" data-type="ajax"><span>Удобная форма загрузки изображений</span></a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Attachments -->
+                            <div style="display: none;" class="form-group j-attachments">
+                                <input type="hidden" name="attachments_hash" value="">
+
+                                <label class="col-sm-3 control-label o-control-label">Файлы</label>
+
+                                <div class="col-sm-7 p-form-noinput">
+                                    <a class="btn btn-sm btn-default j-upload" style="position: relative; overflow: hidden; direction: ltr;">Выбрать файл<input multiple="multiple" type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></a>
+                                    <img alt="" src="//freelance.ua/img/loader.gif" class="j-progress hidden">
+                                    <ul class="p-addProject_files j-list"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Filters -->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label o-control-label"></label>
+
+                                <div class="col-sm-7">
+                                    <div class="checkbox">
+                                        <input id="for-pro" class="devchecker" type="checkbox" name="pro">
+                                        <label for="for-pro"></label>
+                                        Только для
+                                        <span class="label pro">pro</span>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/><br/>
+
+                            <div ng-show="!userIsAuth" class="form-group">
+                                <label for="j-email" class="col-sm-3 control-label o-control-label">Email
+                                    <i class="text-danger">*</i></label>
+
+                                <div class="col-sm-4">
+                                    <input required="required" type="email" name="email" class="form-control j-required" id="j-email" placeholder="Электронная почта" autocomplete="off">
+                                </div>
+                            </div>
+                            <!-- /.form-group-->
+
+                            <div ng-show="!userIsAuth" class="form-group">
+                                <label for="j-name" class="col-sm-3 control-label o-control-label">Имя
+                                    <i class="text-danger">*</i></label>
+
+                                <div class="col-sm-4">
+                                    <input required="required" type="text" name="name" class="form-control j-required" id="j-name" placeholder="Ваше имя" autocomplete="off">
+                                </div>
+                            </div>
+                            <!-- /.form-group-->
+
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <input id="agreement" type="checkbox" class="devchecker"/>
+                                        <label for="agreement"></label>
+                                        Я соглашаюсь с
+                                        <a href="" target="_blank">
+                                            правилами использования сервиса</a>, а также с передачей и обработкой моих данных.
+                                            <i class="text-danger">*</i>
+
+                                    </div>
+                                </div>
+                                <!-- /.col-sm-8 -->
+
+                            </div>
+                            <!-- /.form-group-->
+
+
+                            <div class="form-group">
+                                <div class="col-sm-3 o-control-label"></div>
+                                <div class="col-sm-9 c-formSubmit">
+                                    <button type="button" ng-click="addorder()" class="btn btn-primary">
+                                        <i class="fa fa-rocket"></i> Опубликовать заказ
+                                        <span></span>
+                                    </button>
+                                    <a class="c-formCancel j-cancel" href="#">Отмена</a>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

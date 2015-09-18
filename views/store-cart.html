@@ -1,0 +1,272 @@
+<style>
+    [id^="category-"] {
+        display: none;
+    }
+
+    [id^="category-"] + label {
+        cursor: pointer;
+        padding: 5px;
+        display: block;
+    }
+
+    [id^="category-"]:checked + label {
+        color: white;
+        background: rgb(68, 77, 88);
+    }
+
+    button.form-control {
+        width: auto;
+    }
+</style>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a><i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="/#/freelance.html">Услуги</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active">
+        Заказ
+    </li>
+</ul>
+
+
+<div class="row" ng-model="single_product">
+    <div class="col-md-12">
+
+        <div class="todo-ui" style="margin-top:0 !important">
+
+            <div class="todo-sidebar" style="float: right;margin-left: 20px;">
+                <div class="portlet light">
+
+                    <p style="text-align: center;padding-top: 30px;">В корзине
+                        <br/> на сумму
+                        <br/>
+                        <span style="font-size: 34px;font-weight: bold;">7</span>
+                    </p>
+                    <a href="https://www.liqpay.com/ru/doc">
+                        <button type="button" class="btn green-meadow btn-block" style="margin-top: 20px;margin-bottom: 30px;">Оплатить
+                        </button>
+                    </a>
+                    <hr/>
+                    <p style="text-align: center;font-size: 13px;">
+
+                        <strong style="font-size: 20px;">Есть вопросы?</strong><br/><br/>
+
+                        Если у Вас появлся вопрос по поводу покупки и оплаты, Вы можете задать его в нашей
+                        <a href="">службе технической поддержи</a>
+
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="todo-content">
+                <div class="portlet light row">
+
+
+
+
+
+
+
+
+
+
+                    <br/>
+
+
+
+
+
+
+
+
+
+
+
+                    <div >
+                        <h3>Summary (ngcart-summary)</h3>
+                        <ngcart-summary></ngcart-summary>
+
+
+                        <hr/>
+                        <h3>Add to Cart (ngcart-addtocart)</h3>
+
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h5>My Item #1 $10.99</h5>
+                                <ngcart-addtocart id="item1" name="My Item 1" price="10.99" quantity="1"> Add to Cart</ngcart-addtocart>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <h3>Cart (ngcart-cart)</h3>
+
+                        <ngcart-cart></ngcart-cart>
+                        <a class="btn btn-lg btn-primary" ng-click="checkout()">Checkout</a>
+
+                        <hr/>
+                        <div ng-show="summary">
+                            <h4>Summary</h4>
+                            <pre> {{ summary |json}}</pre>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-6">{{ ngCart.totalItems() }}
+                            <ng-pluralize count="ngCart.totalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+                            <br/>{{ ngCart.totalCost() | currency }}
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div ng-hide="attrs.id">
+                        <a class="btn btn-lg btn-primary" ng-disabled="true" ></a>
+
+                    </div>
+                    <div ng-show="attrs.id">
+                        <div ng-hide="inCart()">
+                            <a class="btn btn-lg btn-primary" ng-click="ngCart.addItem(id, name, price, quantity, data)"></a>
+                        </div>
+                        <div class="alert alert-info" ng-show="inCart()">
+                            This item is in your cart
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="alert alert-warning" role="alert" ng-show="ngCart.totalItems() === 0">
+                        Your cart is empty
+                    </div>
+
+                    <div class="table-responsive col-lg-12" ng-show="ngCart.totalItems() > 0">
+
+                        <table class="table table-striped ngCart cart">
+
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr ng-show="ngCart.getTax()">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Tax ({{ ngCart.getCart().tax }}%):</th>
+                                <th>{{ ngCart.getTax() | currency }}</th>
+                            </tr>
+                            <tr ng-show="ngCart.getShipping()">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Shipping:</th>
+                                <th>{{ ngCart.getShipping() | currency }}</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Total:</th>
+                                <th>{{ ngCart.totalCost() | currency }}</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr ng-repeat="item in ngCart.getCart().items track by $index">
+                                <td><span ng-click="ngCart.removeItem($index)" class="glyphicon glyphicon-remove"></span></td>
+                                <td>{{ item.getName() }}</td>
+                                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                                <td>{{ item.getPrice() | currency}}</td>
+                                <td>{{ item.getTotal() | currency }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <style>
+                        .ngCart.cart span[ng-click] {
+                            cursor: pointer;
+                        }
+
+                        .ngCart.cart .glyphicon.disabled {
+                            color: #aaa;
+                        }
+                    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <article class="col-sm-12" style="overflow: hidden;">
+                        <div class="col-sm-2">
+                            <img style="width:100%;border-radius: 6px;" src="/images/avatar-empty.png"/>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <a href="#/product/{{product.id}}">
+                                <h4 style="color: #444D58;margin-top: 3px;" class="bold">B&B - Law & Attorney HTML5 Template</h4>
+                            </a>
+
+                            Разработчик:
+                            <a href="#/product/{{product.id}}">acousticdev</a>
+                            <br/><br/>
+                            <span style="color: #9F9F9F;">Шаблоны HTML</span>
+                        </div>
+
+                        <div class="col-sm-2" style="position: relative;">
+                            <span style="cursor:pointer; position: absolute;top: -10px;right: 14px;font-size: 30px;color: #C0C0C0;">×</span>
+
+                            <p style="font-size: 30px;font-weight: bold;padding-top: 57px;text-align: right;margin: 0;">
+                                35$</p>
+                        </div>
+                        <hr class="col-sm-12"/>
+                    </article>
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+
+

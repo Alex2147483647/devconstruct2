@@ -1,0 +1,132 @@
+<style>
+
+    ngcart-addtocart {
+        display: none;
+    }
+
+
+    [id^="category-"] {
+        display: none;
+    }
+
+    [id^="category-"] + label {
+        cursor: pointer;
+        padding: 5px;
+        display: block;
+    }
+
+    [id^="category-"]:checked + label {
+        color: white;
+        background: rgb(68, 77, 88);
+    }
+
+    button.form-control {
+        width: auto;
+    }
+</style>
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a><i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="/#/freelance.html">Услуги</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active">
+        Заказ
+    </li>
+</ul>
+
+
+<div class="row" data-ng-controller="CartController">
+    <div class="col-md-12">
+
+        <div class="todo-ui" style="margin-top:0 !important">
+
+            <div class="todo-sidebar" style="float: right;margin-left: 20px;">
+                <div class="portlet light">
+
+                    <p style="text-align: center;padding-top: 30px;">В корзине {{ngCart.getTotalItems()}}
+                        <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'товар', 'other':'товара'}"></ng-pluralize>
+                        <br/> на сумму
+                        <br/>
+                        <span style="font-size: 34px;font-weight: bold;">{{ ngCart.totalCost() | currency }}</span>
+                    </p>
+                    <a class="btn green-meadow btn-block" style="margin-top: 20px;margin-bottom: 30px;" href="https://www.liqpay.com/ru/doc">
+                        Оплатить
+
+                    </a>
+                    <hr/>
+                    <p style="text-align: center;font-size: 13px;">
+
+                        <strong style="font-size: 20px;">Есть вопросы?</strong><br/><br/>
+
+                        Если у Вас появлся вопрос по поводу покупки и оплаты, Вы можете задать его в нашей
+                        <a href="">службе технической поддержи</a>
+
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="todo-content">
+                <div class="portlet light">
+
+                    <ngcart-cart></ngcart-cart>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ngcart-addtocart></ngcart-addtocart>
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-6">{{ ngCart.totalItems() }}
+        <ng-pluralize count="ngCart.totalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+        <br/>{{ ngCart.totalCost() | currency }}
+    </div>
+</div>
+
+
+
+
+
+
+

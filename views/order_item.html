@@ -1,0 +1,250 @@
+<style>
+    .o-proposal-text {
+        padding: 15px;
+        background: #EEE none repeat scroll 0% 0%;
+        margin-top: 15px;
+        position: relative;
+        border-radius: 3px;
+        color: #333;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    .o-proposal-text::before {
+        position: absolute;
+        top: -9px;
+        left: 20px;
+        width: 0px;
+        height: 0px;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid #EEE;
+        content: "";
+    }
+</style>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a><i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="/#/freelance.html">Услуги</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active">
+        Заказ
+    </li>
+</ul>
+
+
+<div class="portlet light" ng-model="single_order" ng-controller="OrderItemController">
+    <div class="portlet-body">
+
+        <div class="row" ng-repeat="order in single_order">
+            <div class="col-md-8 blog-page" >
+
+
+                <h4 class="bold">{{order.title[0]}}</h4>
+
+                <p class="price_output" style="float: right;position: relative;bottom: 30px;right: 25px;border-radius: 4px;">
+                    <i class="fa fa-money"></i>&nbsp;<span class="ng-binding">{{order.price}}{{order.cur.name[0]}}</span>
+                </p>
+
+                <article style="margin-top: 25px">
+                    {{order.description[0]}}
+                </article>
+                <hr/>
+
+                <ul class="l-item-features nopadding">
+                    <li>
+                        <i class="fa fa-map-marker"></i>{{order.city}}
+                    </li>
+                    <li ng-model="$scope.locatisation">
+                        <i class="fa fa-briefcase"></i>
+                        <span ng-if="order.type == 0">Разовый заказ</span>
+                        <span ng-if="order.type == 1">Постоянная работа</span>
+                        <span ng-if="order.type == 2">Конкурсы</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-clock-o"></i>{{ order.date_create | date:'dd.MM.yyyy'}}
+                    </li>
+                    <li ng-if="order.pro == 1">
+                        <span>Только <span class="label pro" style="padding: 2px 6px;padding-top: 0;position: relative;bottom: 1px;">pro</span></span>
+                    </li>
+
+                </ul>
+                <br/><br/>
+
+
+                <a href class="btn" id="j-collapse-add"
+                   data-toggle="collapse" data-target="#feedb" style="width: 100%;font-size: 18px;"><span
+                        style="border-bottom: 1px dashed;">Опубликовать своё предложение</span></a>
+                <br/><br/>
+
+                <div class="row form-horizontal collapse" id="feedb">
+
+                    <div class="form-group">
+                        <label class="col col-sm-3 control-label">Цена</label>
+
+                        <div class="col col-sm-2 nopadding"><input type="text" placeholder="от" class="form-control"/>
+                        </div>
+                        <div class="col col-sm-2 nopadding"><input type="text" placeholder="до" class="form-control"/>
+                        </div>
+                        <div class="col col-sm-2 nopadding"><select class="form-control">
+                            <option value="грн">
+                                грн
+                            </option>
+                            <option value="руб">
+                                руб
+                            </option>
+                            <option value="$">
+                                $
+                            </option>
+                        </select></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col col-sm-3 control-label">Сроки</label>
+
+                        <div class="col col-sm-2 nopadding"><input type="text" placeholder="от" class="form-control"/>
+                        </div>
+                        <div class="col col-sm-2 nopadding"><input type="text" placeholder="до" class="form-control"/>
+                        </div>
+                        <div class="col col-sm-2 nopadding"><select class="form-control">
+                            <option value="1">часа</option>
+                            <option value="2">дня</option>
+                            <option value="3">недель</option>
+                            <option value="4">месяцев</option>
+                        </select></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col col-sm-3 control-label">Описание:</label>
+
+                        <div class="col col-sm-8 nopadding"><textarea class="form-control" id="comment31"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-3 nopadding">
+                            <button class="btn btn-primary">Опубликовать предложение</button>
+                            <button data-toggle="collapse" data-target="#feedb" class="btn btn-link">Отмена</button>
+                        </div>
+                    </div>
+
+                </div>
+                <br/><br/>
+
+                <h4 class="bold o-propositions-title">
+                    <i class="fa fa-comments-o"></i> Предложения от исполнителей <span style="background-color: #4db3a4;
+    color: #fff;    padding: 2px 10px;" class="circle bold o-count-proposals">1</span>
+                </h4>
+                <div>
+                    <article class="row" style="margin-top: 40px;overflow: hidden;">
+                        <div class="col-sm-2" style="text-align:right;padding-top: 4px;">
+                            <img src="/assets/admin/layout3/img/avatar9.jpg" style="width: 70px; border-radius: 50%;">
+                        </div>
+
+                        <div class="col-sm-10" style="font-size: 13px;color: #686868;">
+                            <a href="">Василий Петрович</a><br/>
+                            <span>Специализация: </span><a href="">Веб-сайты</a><br/>
+                            <span>Отзывы работодателей: </span><a href="/"><span style="color: #09A209;">+3</span> /<span style="color: #FF0000;">-1</span></a><br/>
+                            <span> Добавлено 12.09.2015 в 20:29</span><span><i style="margin-left: 15px" class="fa fa-map-marker"></i> Киев, Украина</span><br/>
+                            <div class="o-proposal-text">
+                                <div class="o-proposed-terms">
+                                    <strong style="color: rgb(243, 106, 90);">500 - 600 грн.</strong>
+                                </div>
+                                сделаю на wordpress
+                            </div>
+                            <table class="table table-condensed">
+                                <tbody>
+                                <tr>
+                                    <td style="border-top: 0">Телефон:</td>
+                                    <td style="border-top: 0">380687467208</td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    <td><a href="mailto:depressive.giraffe@gmail.com" rel="nofollow">depressive.giraffe@gmail.com</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Skype:</td>
+                                    <td>r.pavliuk</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr style="float: right;" class="col-sm-11"/>
+                    </article>
+                </div>
+
+
+            </div>
+            <div class="col-md-4 blog-page" >
+
+
+                <div style="border: 1px solid rgb(238, 238, 238);padding: 15px;border-radius: 6px;margin-bottom: 20px;font-size: 16px;">
+
+                    <div ng-if="order.usr.username != undefined">
+                        <b>Заказчик</b>:
+                        <br/>
+                        <a href="">{{order.usr.firstname[0]}} [{{order.usr.username}}]</a>
+                    </div>
+
+                    <div ng-if="order.usr.username == undefined"><b>Заказчик</b>: <span style="font-size: 13px;color: #AEAEAE;">(не зарегестрированный):</span>
+                        <br/>
+                        <span>{{order.user_name}}<br/>{{order.user_email}}
+                        </span>
+                    </div>
+
+
+                    <div ng-if="order.usr.username != undefined" class="row" style="margin-top: 10px">
+                        <div class="col-sm-4 padding3" style="padding-right: 0px;padding-left: 15;">
+                            <button type="button" class="btn btn-block btn-primary">Портфолио
+                            </button>
+                        </div>
+                        <div class="col-sm-4 padding3">
+                            <button type="button" class="btn btn-block green-haze">В друзья
+                            </button>
+                        </div>
+                        <div class="col-sm-4 padding3" style="padding-right: 15px;padding-left: 0;">
+                            <button type="button" class="btn btn-block btn-danger">Сообщение
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="border: 1px solid rgb(238, 238, 238);padding: 15px;border-radius: 6px;margin-bottom: 20px;font-size: 16px;">
+                    Отзывы заказчика: <span style="color: #09A209;">+3</span> /
+                    <span style="color: #FF0000;">-1</span></a></span>
+                </div>
+
+                <div style="border: 1px solid rgb(238, 238, 238);padding: 15px;border-radius: 6px;margin-bottom: 20px;font-size: 16px;">
+                    Рейтинг: {{order.usr.rating}}
+
+                </div>
+
+
+                <div style="border: 1px solid rgb(238, 238, 238);padding: 15px;border-radius: 6px;margin-bottom: 20px;font-size: 16px;">
+                    <b>Контакты:</b><br/>
+                    Телефон: %user_phone%<br/>
+                    skype: %user_skype%<br/>
+                    Email: %user_email%
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

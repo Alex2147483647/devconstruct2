@@ -1,0 +1,12 @@
+<div ng-show="!inCart()" ng-animate="'box'" class="box on">
+    <button ng-click="ngCart.addItem(id, name, price, quantity, data, developer, cat, link, catlink)" class="btn btn-block green-meadow">
+        <i class="fa fa-plus" style="position: relative;top: 1px;"></i>
+        Добавить в корзину
+    </button>
+</div>
+<div ng-show="inCart()" ng-animate="'box'" class="box off">
+    <button ng-click="ngCart.removeItemById(id)" class="btn btn-block red">
+        <i class="fa fa-times"></i>
+        Убрать из корзины
+    </button>
+</div>

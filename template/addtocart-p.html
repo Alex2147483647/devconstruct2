@@ -1,0 +1,10 @@
+<div ng-show="!inCart()" ng-animate="'box'" class="box on">
+    <a style="color: #B9C0C5;border-right: 0" ng-click="ngCart.addItem(id, name, price, quantity, data, developer, cat, link, catlink)">
+        <i class="fa fa-shopping-cart"></i>
+     </a>
+</div>
+<div ng-show="inCart()" ng-animate="'box'" class="box off">
+    <a ng-click="ngCart.removeItemById(id)" style="border-right: 0">
+        <i class="fa fa-shopping-cart" style="color: #3598DC;"></i>
+    </a>
+</div>

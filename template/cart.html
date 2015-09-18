@@ -1,0 +1,65 @@
+<div style="margin: 20px;" class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
+    Ваша корзина пуста. <a ui-sref="store" ui-sref-opts="{reload:true}">Продолжить покупки</a>
+
+</div>
+<script>
+
+</script>
+<div class="table-responsive" ng-show="ngCart.getTotalItems() > 0">
+
+<br/>
+
+    <article ng-repeat="item in ngCart.getCart().items track by $index" class="col-sm-12 nopadding"
+             style="overflow: hidden;">
+        <div class="col-sm-2">
+            <img style="width:100%;border-radius: 6px;" src="/images/avatar-empty.png"/>
+        </div>
+
+        <div class="col-sm-8">
+            <a ng-href="/#/store/{{ item.getCatlink() }}/{{ item.getLink() }}">
+                <h4 style="color: #444D58;margin-top: 3px;" class="bold">{{ item.getName() }}</h4>
+            </a>
+
+            Разработчик:
+            <a href="">{{ item.getDeveloper() }}</a>
+            <br/><br/>
+            <span style="color: #9F9F9F;">{{ item.getCat() }}</span>
+        </div>
+
+        <div class="col-sm-2" style="position: relative;">
+            <span ng-click="ngCart.removeItemById(item.getId())"
+                  style="cursor:pointer; position: absolute;top: -10px;right: 14px;font-size: 30px;color: #C0C0C0;">×</span>
+
+
+        </div>
+
+
+        <hr class="col-sm-12" style="padding-right: 0px"/>
+
+        <p style="font-size: 22px;font-weight: bold;text-align: right;margin: 0px;position: absolute;bottom: 45px;right: 30px;color: #777;">
+            {{ item.getPrice() | currency}}</p>
+    </article>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

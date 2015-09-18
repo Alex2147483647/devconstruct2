@@ -1,0 +1,145 @@
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#">Home</a><i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <a href="/#/freelance.html">Услуги</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active">
+        Заказ
+    </li>
+</ul>
+
+<style>
+    .padding3 {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+</style>
+
+<div class="portlet light">
+    <div class="portlet-body">
+
+        <div class="row" ng-repeat="product in single_product">
+            <div class="col-sm-8 blog-page">
+
+
+                <h3 id="item-prod-title" style="margin-bottom: 30px;text-align: center">{{product.title[0]}}</h3>
+
+                <img style="width: 80%;border: 1px solid #eee;padding: 5px;border-radius: 6px;display: block;margin:0 auto"
+                     alt="Brainwave — Multipurpose One/Multi Page Template - Creative Site Templates"
+                     src="https://image-tf.s3.envato.com/files/149038217/Theme-Preview.__large_preview.jpg">
+
+                <div style="text-align: center;">
+                    <br/>
+
+                    <div class="btn-group btn-group-lg btn-group-solid margin-bottom-10">
+                        <a href="//{{product.demo_url}}"><button type="button" class="btn green-haze"><i class="fa fa-external-link-square"></i>
+                            Посмотреть Demo
+                        </button></a>
+                        <a href="">
+                        <button type="button" class="btn green"><i class="fa fa-heart"></i> Добавить в закладки</button>
+                            </a>
+                    </div>
+                </div>
+
+                <div class="user-html" style="padding: 0px 30px;">
+
+                    <p style="text-align: center;padding-top: 20px;">
+                        <a rel="nofollow"><img src="http://files.brainwave.scientecraft.com/promo-landing.jpg" alt="" style="border: 1px solid #eee;padding: 5px;border-radius: 6px;width: 87%;"></a>
+                    </p>
+
+                    <h3 id="" style="border-bottom: 1px solid #eee;padding-bottom: 10px;">Описание</h3>
+                    {{product.description[0]}}
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-sm-4" style="">
+                <div class="col-sm-12"
+                     style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;border-radius: 6px;margin-bottom: 20px">
+                    <p class="col-sm-8" style="margin-top: 5px;">Стандартная лиценция</p>
+
+                    <p class="col-sm-4" style="font-size: 26px;font-weight: bold;">{{product.price}}{{product.cur.name[0]}}</p>
+
+                    <hr class="col-sm-12" style="padding: 0px;margin-top: 0;"/>
+
+
+                    <ngcart-addtocart style="display: inline-block;"
+                            class="btn btn-block ngcart-addtocart" id="{{product.id}}"
+                            name="{{product.title[0]}}" price="{{product.price}}{{product.cur.name[0]}}" quantity="1"
+                            data="2" developer="{{product.usr.username}}" cat="{{product.cat.name[0]}}"
+                            link="{{product.seo_url}}" catlink="{{product.cat.seo_url}}">
+                    </ngcart-addtocart>
+
+                </div>
+                    <div class="col-sm-12"
+                         style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;border-radius: 6px;margin-bottom: 20px;font-size:18px;color: rgb(68, 77, 88);">
+                    <span><i class="fa fa-shopping-cart"
+                             style="font-size: 20px;"></i>  <strong>0</strong> продаж</span>
+                    </div>
+
+
+
+
+                <div class="col-sm-12"
+                     style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;border-radius: 6px;margin-bottom: 20px;font-size:18px;color: rgb(68, 77, 88);">
+                    <span><i class="fa fa-comment-o"
+                             style="font-size: 20px;"></i>  <strong>0</strong> комментариев</span></div>
+
+                <div class="col-sm-12"
+                     style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;border-radius: 6px;margin-bottom: 20px;font-size:18px;color: rgb(68, 77, 88);">
+                    <p>Продавец: <a href="">{{product.usr.username}}</a></p>
+
+                    <div class="col-sm-4 padding3">
+                        <button type="button" class="btn btn-block btn-primary">Портфолио
+                        </button>
+                    </div>
+                    <div class="col-sm-4 padding3">
+                        <button type="button" class="btn btn-block green-haze">В друзья
+                        </button>
+                    </div>
+                    <div class="col-sm-4 padding3">
+                        <button type="button" class="btn btn-block btn-danger">Сообщение
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-12"
+                     style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;border-radius: 6px;margin-bottom: 20px;font-size:18px;color: rgb(68, 77, 88);">
+                    <span>Рейтинг продавца: {{product.usr.rating}}</span></div>
+
+
+                <div class="col-sm-12"
+                     style="border: 1px solid #EEE;padding-top: 15px;padding-bottom: 15px;line-height: 35px;border-radius: 6px;margin-bottom: 20px;font-size:14px;color: rgb(68, 77, 88);">
+                    <b>Загружено:</b> 10.05.2014<br/>
+                    <b>Совместимые браузеры:</b> {{product.attributes_browser[0]}}<br/>
+                    <b>Совместимо с:</b> {{product.attributes_compatibility[0]}}<br/>
+                    <b>Файлы:</b> HTML Files, CSS Files, JS Files<br/>
+                    <b>Колонки:</b> {{product.columns}}<br/>
+                    <b>Шаблон:</b> {{product.attributes_tpl_type}}<br/>
+                    <b>Теги:</b> {{product.tags}}
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+

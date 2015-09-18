@@ -1,0 +1,351 @@
+<script>
+
+
+</script>
+
+<style>
+    .f-freelancer-name label {
+        padding: 1px 6px 2px 6px;
+    }
+
+    .inc-drop label {
+        width: 100%
+    }
+
+    .o-freelancer-info {
+        width: calc(100% - 45px);
+        float: right;
+        font-size: 13px;
+        color: #757575;
+        position: relative;
+        bottom: 8px;
+    }
+
+    .o-good {
+        color: #09A209;
+    }
+
+    .o-bad {
+        color: #FF0000;
+    }
+
+    .pro {
+        background-color: #f36a5a;
+    }
+</style>
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN todo SIDEBAR -->
+        <div class="todo-ui margin-top-10">
+
+            <div class="todo-sidebar">
+
+                <a href="/#/add_order_item.html">
+                    <button class="btn blue btn-block" style="margin-bottom: 10px;">
+                        <i class="fa fa-plus "></i> Добавить продукт
+                    </button>
+                </a>
+
+                <div class="portlet light">
+
+                    <div class="portlet-title">
+                        <div class="caption" a>
+                            <span class="caption-subject font-green-sharp">Категории</span>
+
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn" href="#">
+                                    <i class="fa fa-angle-down" style="width:11px"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body todo-project-list-content"
+
+                            >
+                        <div class="todo-project-list">
+                            <div class="cat-output form-create-category" ng-hide="true">
+                                <div class="form-group">
+                                    <input class="form-control" id="input-category-name" name="category_name" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <a ng-click="addCategory(-1)" class="btn btn-success"> Создать </a>
+                                </div>
+                            </div>
+                            <ul ng-model="$scope.categories_developer" class="nav nav-pills nav-stacked">
+                                <li ng-repeat="category in categories_developer">
+                                    <label class="parent-label">
+                                        <input ng-click="filterOrders(-1)" type="checkbox" name="category[]" value="{{category.category_id}}">
+                                    </label>
+                                    <span class="check-parent">{{ category.name[0]}}</span><i class="fa fa-angle-down"></i>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END todo SIDEBAR -->            <!-- BEGIN todo CONTENT -->
+
+            <!-- ++++++++++++++++++++++ TODO START -->
+            <div class="todo-content">
+                <div class="portlet light">
+                    <!-- PROJECT HEAD -->
+
+                    <!-- end PROJECT HEAD -->
+
+                    <div class="input-icon">
+                        <i class="fa fa-search"></i>
+                        <input class="form-control" placeholder="Найти в магазине" type="text">
+                    </div>
+
+                    <br/>
+
+
+                    <b>
+                        <p>
+                            Найдено 15 товаров</p>
+                    </b>
+
+
+                    <ul class="store_output nopadding">
+                        <li class="col-sm-4">
+
+                            <img src=""/>
+
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+            <!-- ++++++++++++++++++++++ TODO END -->
+
+            <!-- +++++++++++ FREELANCER START -->
+            <div class="freelancer-content" style="overflow: hidden; display:none">
+                <div class="portlet light">
+                    <!-- PROJECT HEAD -->
+
+                    <!-- end PROJECT HEAD -->
+
+                    <div class="input-icon">
+                        <i class="fa fa-search"></i>
+                        <input class="form-control" placeholder="Найти исполнителя" type="text">
+                    </div>
+
+                    <br/>
+
+
+                    <b>
+                        <p>
+                            Найдено 9 исполнителей</p>
+                    </b>
+
+                    <hr/>
+
+
+                    <ul class="freelancers_output nopadding">
+                        <li class="simple_freelancer">
+                            <img style="width: 60px;" src="/images/avatar-empty.png"/>
+
+
+                            <div class="row o-freelancer-info">
+                                <div class="col-sm-6">
+                                    <div class="f-freelancer-name" style="margin: 5px 0px">
+                                        <a href="" data-id="0">Дмитрий Яковчук [yakovchuk]</a>
+                                        <span class="label pro">pro</span> <span class="label label-success">
+                                    	Свободен                                </span>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <span class="hidden-sm hidden-xs">Специализация:</span>
+                                        <a href="">Веб-программирование</a>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <i class="fa fa-map-marker"></i> Одесса, Украина
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="o-feedbacks-inf">
+                                        Отзывы:
+                                        <a class="o-good" href="">+0</a> /
+                                        <a href="">0</a> /
+                                        <a class="o-bad" href="">-0</a>
+                                    </div>
+                                    <div>
+                                        Рейтинг:
+                                        <strong>40</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div>
+                                        <i class="fa fa-clock-o"></i> Цена: 150 $
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-dollar"></i> Бюджет от: 150 $
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </li>
+
+                        <li class="simple_freelancer">
+                            <img style="width: 60px;" src="/images/avatar-empty.png"/>
+
+
+                            <div class="row o-freelancer-info">
+                                <div class="col-sm-6">
+                                    <div class="f-freelancer-name" style="margin: 5px 0px">
+                                        <a href="" data-id="0">Дмитрий Яковчук [yakovchuk]</a>
+                                        <span class="label label-success">Свободен</span>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <span class="hidden-sm hidden-xs">Специализация:</span>
+                                        <a href="">Веб-программирование</a>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <i class="fa fa-map-marker"></i> Одесса, Украина
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="o-feedbacks-inf">
+                                        Отзывы:
+                                        <a class="o-good" href="">+0</a> /
+                                        <a href="">0</a> /
+                                        <a class="o-bad" href="">-0</a>
+                                    </div>
+                                    <div>
+                                        Рейтинг:
+                                        <strong>40</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div>
+                                        <i class="fa fa-clock-o"></i> Цена: 150 $
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-dollar"></i> Бюджет от: 150 $
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </li>
+
+                        <li class="simple_freelancer">
+                            <img style="width: 60px;" src="/images/avatar-empty.png"/>
+
+
+                            <div class="row o-freelancer-info">
+                                <div class="col-sm-6">
+                                    <div class="f-freelancer-name" style="margin: 5px 0px">
+                                        <a href="" data-id="0">Дмитрий Яковчук [yakovchuk]</a>
+                                        <span class="label pro">pro</span>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <span class="hidden-sm hidden-xs">Специализация:</span>
+                                        <a href="">Веб-программирование</a>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <i class="fa fa-map-marker"></i> Одесса, Украина
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="o-feedbacks-inf">
+                                        Отзывы:
+                                        <a class="o-good" href="">+0</a> /
+                                        <a href="">0</a> /
+                                        <a class="o-bad" href="">-0</a>
+                                    </div>
+                                    <div>
+                                        Рейтинг:
+                                        <strong>40</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div>
+                                        <i class="fa fa-clock-o"></i> Цена: 150 $
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-dollar"></i> Бюджет от: 150 $
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </li>
+
+
+                        <li class="simple_freelancer">
+                            <img style="width: 60px;" src="/images/avatar-empty.png"/>
+
+
+                            <div class="row o-freelancer-info">
+                                <div class="col-sm-6">
+                                    <div class="f-freelancer-name" style="margin: 5px 0px">
+                                        <a href="" data-id="0">Дмитрий Яковчук [yakovchuk]</a>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <span class="hidden-sm hidden-xs">Специализация:</span>
+                                        <a href="">Веб-программирование</a>
+                                    </div>
+                                    <div style="margin: 5px 0px">
+                                        <i class="fa fa-map-marker"></i> Одесса, Украина
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="o-feedbacks-inf">
+                                        Отзывы:
+                                        <a class="o-good" href="">+0</a> /
+                                        <a href="">0</a> /
+                                        <a class="o-bad" href="">-0</a>
+                                    </div>
+                                    <div>
+                                        Рейтинг:
+                                        <strong>40</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div>
+                                        <i class="fa fa-clock-o"></i> Цена: 150 $
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-dollar"></i> Бюджет от: 150 $
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+            </div>
+            <!-- +++++++++++ FREELANCER START -->
+
+
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div><!-- END PAGE CONTENT-->
+
+<script>
+    todo.init();
+</script>
